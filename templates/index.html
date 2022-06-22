@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+    {% block body %}
+
+    <div class="row">
+        <div class="col-md-4">
+            {% include('partials/_message.html') %}
+            {% include('partials/_productForm.html') %}
+        </div>
+
+        <div class="col-md-7">
+            {% for product in products %}
+            <div class="card mb-1 text-white bg-dark">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5>{{product.nombre}}</h5>    
+                        <div>  
+                            <a href="{{ url_for('products.update', id=product.id)}}" class="btn bg-black text-white btn-sm rounded-0">Actualizar</a>
+                            <a href="{{ url_for('products.delete', id=product.id)}}" class="btn btn-danger btn-sm rounded-0">Borrar</a>
+                        </div>
+                    </div>
+                <p>Categoria: {{product.categoria}}</p>
+                <p>Precio: S/ {{product.precio}} </p>
+                <p>Stock: {{product.stock}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
